@@ -4,6 +4,8 @@ import api from "../../server/api";
 
 import './filme-info.css'
 
+import { toast } from "react-toastify";
+
 
 const Filme = () => {
   const { id } = useParams()
@@ -45,13 +47,13 @@ const Filme = () => {
     const hasFilme = filmesSalvos.some((filmeSalvo) => filmeSalvo.id === filme.id )
 
     if(hasFilme){
-      alert("Esse filme já esta salvo")
+      toast.warn('Esse filme já está na sua lista!')
       return
     }
 
     filmesSalvos.push(filme)
     localStorage.setItem("@reactflix", JSON.stringify(filmesSalvos))
-    alert('Filme Salvo com sucesso!')
+    toast.success('Filme salvo com sucesso!')
   }
 
   if(loading) {
